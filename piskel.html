@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./bootstrap/bootstrap.css" />
+    <link rel="stylesheet" href="./src/styles/style.css" />
+    <title>Piskel Clone</title>
+  </head>
+  <body>
+    <header class="header">
+      <a href="#">
+          <img class="logo" src="img/logo.png" alt="logo">
+      </a>
+      <span class="header-text sprite_name navbar-text" id="spriteName">New piskel</span>
+      <nav class="" id="navbar">
+        <div class="nav_btn_container">
+          <button class="create_sprite" id="create_sprite">Create Sprite</button>
+          <button class="sign_in" id="sign_in">Sign In</button>
+        </div>
+      </nav>
+    </header>
+    
+    <main class="main">
+        <div class="tools-wrapper tools-column" id="tools-wrapper">
+          <ul>
+            <li class="size_select" id="size_tool">
+              <label for="sizes">Canvas Sizes</label><br />
+              <select name="sizes" id="sizes_canvas">
+                <option value="32" id="size">32</option>
+                <option value="64" id="size">64</option>
+                <option value="128" id="size">128</option>
+              </select>
+            </li>
+            <li class="size_pen" id="size_tool">
+              <label for="sizes">Pen Sizes</label><br />
+              <select name="sizes" id="sizes_pen">
+                <option value="1" id="size">1</option>
+                <option value="2" id="size">2</option>
+                <option value="3" id="size">3</option>
+                <option value="4">4</option>
+              </select>
+            </li>
+          </ul>
+
+          <ul class="tools tools-list" id="tools-list">
+              
+            <li class="tool tools-item tools-item--pen" id="pen_tool">
+              <span class="hint">Pen Tool (<strong>P</strong>)</span>
+            </li>
+
+            <li class="tool tools-item tools-item--mirror" id="mirror_tool">
+              <span class="hint">Mirror Tool (<strong>L</strong>)</span>
+            </li>
+
+            <li class="tool tools-item tools-item--paint-bucket" id="bucket_tool">
+              <span class="hint">Bucket Tool (<strong>B</strong>)</span>
+            </li>
+
+            <li class="tool tools-item tools-item--paint-bucket-all" id="colorSwap_tool">
+              <span class="hint">Paint all Pixels of the Same Color (<strong>K</strong>)</span>
+            </li>
+
+            <li class="tool tools-item tools-item--eraser" id="eraser_tool">
+              <span class="hint">Eraser Tool (<strong>E</strong>)</span>
+            </li>
+
+            <li class="tool tools-item tools-item--stroke" id="stroke_tool">
+              <span class="hint">Create Line (<strong>S</strong>)</span>
+            </li>
+
+            <li class="tool tools-item tools-item--strange" id="strange_tool">
+              <span class="hint">Feel like an artist! (<strong>7</strong>)</span>
+            </li>
+
+            <li class="tool tools-item tools-item--rectangle" id="rectangle_tool">
+              <span class="hint"> Create rectangle (<strong>R</strong>)</span>
+            </li>
+            
+            <li class="tool tools-item tools-item--circle" id="circle_tool">
+              <span class="hint">Circle Tool (<strong>C</strong>)</span>
+            </li>
+
+            <li class="tool tools-item tools-item--move" id="move_tool">
+              <span class="hint">Move your canvas (<strong>M</strong>)</span>
+            </li>
+
+            <li class="tool tools-item tools-item--shape-selection" id="shape_tool">
+              <span class="hint">Soon, but now doesn't work!</span>
+            </li>
+
+            <li class="tool tools-item tools-item--dithering" id="dithering_tool">
+              <span class="hint">Dithering Tool (stains the canvas in a checkerboard pattern)
+                (<strong>D</strong>)</span>
+            </li>
+
+            <li class="tool tools-item tools-item--rotate" id="rotate_tool">
+              <span class="hint">Rotate canvas (<strong>T</strong>)</span>
+            </li>
+            <li class="tool tools-item tools-item--flip" id="flip_tool">
+              <span class="hint">Flip Tool (<strong>F</strong>)</span>
+            </li>
+          </ul>
+
+            <ul class="tools-list" id="tools-list">
+              <li class="color_main color" id="color_tool color_main">
+                <input
+                  type="color"
+                  id="main"
+                  name="Color"
+                  value="#000000"
+                  height="40px"
+                  width="100px"
+                />
+                <label for="main">Main</label>
+              </li>
+              <li class="color_secondary color" id="color_tool color_secondary">
+                <input
+                  type="color"
+                  id="secondary"
+                  name="Color"
+                  value="#ffffff"
+                  height="40px"
+                  width="100px"
+                />
+                <label for="secondary">Secondary</label>
+              </li>
+            </ul>
+        </div>
+
+          <div class="left-column">
+              <ul class="list-group" id="sortable">
+              <li class="list-group-item frame active" id="frame_0" draggable="true">
+                <button class="copyBtn framesButtons" id="copyButton"></button>
+                <button class="deleteBtn framesButtons" id="deleteButton"></button>
+              </li>
+              <li>
+                <button class="add-btn" id="add-btn">Add new frame</button>
+              </li>
+            </ul>
+            
+          </div>
+
+          <div class="main-column">
+            <div class="canvas-main-container" oncontextmenu="return false;"></div>
+          </div>
+
+          <div class="right-column">
+            <div class="preview-wrapper">
+              <div class="preview" id="preview">
+                <div id="fullScreen" class="full"></div>
+              </div>
+              <div class="frame_rate-wrapper" id="frame_rate-wrapper">
+                <input type="range" class="frame_rate" id="frame_rate" min="0" max="24" step="1" />
+                <p class="fps_value" id="fps_value">12</p>
+              </div>
+            </div>
+            <div class="layers-wrapper"></div>
+            <div class="info-wrapper">
+              <ul>
+                <li class="cursor_cords" id="cursor_coords">0x0</li>
+                <li class="layer_size" id="layer_size">32x32</li>
+              </ul>
+            </div>
+            <div class="localStorageButtons" id="localStorageButtons">
+              <button class="renderButton" id="renderButton">Render Your Data</button>
+              <button class="saveButton" id="saveButton">Save Your Data</button>
+              <button class="clearButton" id="clearButton">Clear All Data</button>
+              <button class="downloadButton" id="downloadButton">Download Gif</button>
+            </div>
+          </div>
+     
+    </main> 
+
+    <footer class="footer">
+      <div class="author">
+        <h2>Author: <svg class="octicon octicon-mark-github v-align-middle" height="32" viewBox="0 0 16 16" version="1.1" width="32" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg><a href="https://github.com/EvgenySamohvalov" target="_blank">  Evgeny Samohvalov</a></h2>
+      </div>
+      <div class="settings-wrapper" id="settings-wrapper">
+        <ul class="settings list-group" id="settings">
+          <li id="export list-group-item"></li>
+          <li id="save list-group-item"></li>
+        </ul>
+      </div>
+    </footer>
+
+    <script src="./dist/app.bundle.js"></script>
+    <script src="./dist/gifshot.js"></script>
+  </body>
+</html>
